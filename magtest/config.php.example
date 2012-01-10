@@ -1,0 +1,14 @@
+<?php
+
+error_reporting(E_ALL|E_STRICT);
+ini_set('display_errors', 'On');
+
+define("MAG_LOG_DIR", dirname(__FILE__)."/log");
+
+define("SERVICE_SCRIPT", "http://".$_SERVER['HTTP_HOST'].dirname($_SERVER['SCRIPT_NAME'])."/services.php");
+
+define("MAG_PUSHENGINE_URI", "http://".$_SERVER['HTTP_HOST']."/MAGLIBv".MAG_VERSION."/magserver/pushserv/pushengine.php");
+
+define("DEFAULT_EXPIRE", 7*24*3600*1000); # in milliseconds
+
+?>

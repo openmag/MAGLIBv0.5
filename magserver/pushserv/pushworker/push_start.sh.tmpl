@@ -1,0 +1,37 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          rc.local
+# Required-Start:    $remote_fs
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Run /etc/rc.local if it exist
+### END INIT INFO
+
+THREADS=2
+SCRIPT=pusher2worker.php
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+PUSH_HOME=%%PUSH_HOME%%
+
+case "$1" in
+	start)
+                x=1
+                while [ $x -le $THREADS ]
+                do
+                  echo "Start push worker process $x ..."
+		  su -m www-data -c "$PUSH_HOME/$SCRIPT &"
+                  x=$(( $x + 1 ))
+                done
+		;;
+	restart|reload|force-reload)
+		echo "Error: argument '$1' not supported" >&2
+		exit 3
+		;;
+	stop)
+		su -m www-data -c "killall -q $SCRIPT"
+		;;
+	*)
+		echo "Usage: $0 start|stop" >&2
+		exit 3
+		;;
+esac

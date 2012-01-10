@@ -1,0 +1,48 @@
+CopyRight @ Anhe Innovation Technology
+
+March 2011
+
+------------------------------------------------------------
+
+1. Install WAMP or LAMP
+
+2. Configure mysql
+
+   Create database
+
+   * mysqladmin -u root -p create mag
+   
+   * mysql -u root -p mag < MAGLIB/magserver/mag.sql
+
+3. Install MAGLIB
+
+   cd MAGLIB
+
+   run prepare.sh or prepare.bat
+
+   Open web browser, point to MAGLIB/magserver
+
+   On the page, input admin password, mysql information (hostname, port, username, password, database name etc.) Click submit
+
+4. Start service processes
+
+   * Start push service
+
+   cd magserver/local/etc
+
+   run 
+   # ./push_start.sh start
+   to start the service
+   or run 
+   # ./push_start.sh stop
+   to stop the service
+
+   * Start dbsync service
+
+   run 
+   # ./sync_start.sh start
+   to start the service
+
+   or run
+   # ./sync_start.sh stop
+   to stop the service
